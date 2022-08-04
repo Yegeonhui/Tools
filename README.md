@@ -6,5 +6,4 @@
 Subject|설명|Url|
 |:-----|:--|
 |ImageEnhancement|이미지 성능 향상|[ImageEnhancement](2021/etc/ImageEnhancement/Image_Enhancement.py)|
-|:-----|:--|
 |VideoCapture|동영상을 이미지로 변환|[ImageEnhancement](2021/etc/ImageEnhancement/Image_Enhancement.py)|
