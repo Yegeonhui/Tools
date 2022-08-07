@@ -6,7 +6,7 @@
 - tie 개수대로 폴더에 저장
 - 저장할때 랜덤한 이름으로 저장 
 2. step2_changejsonpath.py
-- json파일의 imagePath를 이미지명과 통일
+- JSON파일의 imagePath를 이미지명과 통일
 
 ## install Library
 ```
