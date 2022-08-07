@@ -1,5 +1,5 @@
 # Augmentation_XML
-> Nia 사업간 모델학습을 위해 XML, image를 증강하는 코드
+> NIA 사업간 모델학습을 위해 XML, image를 증강하는 코드
 
 ## How to use?
 1. XML 내부에 객체가 5개 이상인 경우만 Augmentation 수행
