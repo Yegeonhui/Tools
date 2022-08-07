@@ -16,5 +16,5 @@ pip install opencv-python
 pip install python-time
 ```
 
-## Notion
-![Notion](https://www.notion.so/giveandtake/clahe-91c1ac640ba04d38a6ad989e9aa10687)
+## Detail explanation
+[Notion](https://www.notion.so/giveandtake/clahe-91c1ac640ba04d38a6ad989e9aa10687)
