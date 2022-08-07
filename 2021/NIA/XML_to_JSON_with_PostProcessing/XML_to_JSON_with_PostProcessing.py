@@ -172,10 +172,3 @@ for idx, (root, dirs, files) in enumerate(os.walk("Image")):
         Img.save(saveroot + "/" + image_name, exif=exif)
     
         count += 1
-        
-        
-
-
-        
-        
-
