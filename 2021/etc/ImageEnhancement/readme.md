@@ -13,22 +13,22 @@ pip install numpy
 ## Example
 - - -
 ### original
-![original](https://github.com/Yegeonhui/Code/blob/main/Python/Tools/2021/etc/ImageEnhancement/sample_image/원본.jpg)
+![original](sample_image/원본.jpg)
 - - -
 ### Laplacian
-![Laplacian](https://github.com/Yegeonhui/Code/blob/main/Python/Tools/2021/etc/ImageEnhancement/sample_image/Laplacian.jpg)
+![Laplacian](sample_image/Laplacian.jpg)
 - - -
 ### bgr_Contrast
-![bgr_Contrast](https://github.com/Yegeonhui/Code/blob/main/Python/Tools/2021/etc/ImageEnhancement/sample_image/bgr_Contrast.jpg)
+![bgr_Contrast](sample_image/bgr_Contrast.jpg)
 - - -
 ### cannyedge
-![cannyedge](https://github.com/Yegeonhui/Code/blob/main/Python/Tools/2021/etc/ImageEnhancement/sample_image/cannyedge.jpg)
+![cannyedge](sample_image/cannyedge.jpg)
 - - -
 ### lab_Contrast
-![lab_Contrast](https://github.com/Yegeonhui/Code/blob/main/Python/Tools/2021/etc/ImageEnhancement/sample_image/lab_Contrast.jpg)
+![lab_Contrast](sample_image/lab_Contrast.jpg)
 - - -
 ### sharpening
-![sharpening](https://github.com/Yegeonhui/Code/blob/main/Python/Tools/2021/etc/ImageEnhancement/sample_image/sharpening.jpg)
+![sharpening](sample_image/sharpening.jpg)
 - - -
 ### soblex
-![soblex](https://github.com/Yegeonhui/Code/blob/main/Python/Tools/2021/etc/ImageEnhancement/sample_image/soblex.jpg)
+![soblex](sample_image/soblex.jpg)
