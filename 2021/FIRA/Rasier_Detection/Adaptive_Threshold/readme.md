@@ -14,6 +14,6 @@ pip install opencv-python
 ## Example
 ![origin](Example_image/origin.PNG)
 ![threshold](Example_image/threshold.PNG)
-![thres_mean](Example_image/thres_mean.PNG)
+![thresh_mean](Example_image/thresh_mean.PNG)
 ![가우시안](Example_image/가우시안.PNG)
 
