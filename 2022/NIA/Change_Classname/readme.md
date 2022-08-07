@@ -1,5 +1,5 @@
 # Change Class Name
-> nia사업에서 쓰인 도구
+> NIA 사업에서 쓰인 도구
 > 클래스명을 잘못 알고 라벨링 한 경우 바꾸는 코드 ex) 뿔소라 -> 고둥
 
 ## How to use?
