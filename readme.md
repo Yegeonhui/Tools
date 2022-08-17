@@ -11,3 +11,4 @@ Subject|설명|Url|
 |JSON_to_XML|JSON 파일에서 XML파일로 변환|[JSON_TO_XML](2021/NIA/JSON_to_XML/JSON_to_XML.py)|
 |jpg_to_png|jpg에서 png로 변환|[jpg to png](2021/NIA/jpg_to_png/jpg_to_png.py)
 |crawling|크롤링|[crawling](2022/etc/crawling/crawling.py)
+|exif|exif정보보기|[exif](2022/NIA/DataLabeling/v1.4/check_exif.py)
