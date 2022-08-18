@@ -8,8 +8,6 @@
 
 ## install Library
 ```
-pip install pyshp
-pip install shapely
 conda install geopandas
 ```
 
