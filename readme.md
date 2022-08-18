@@ -12,3 +12,4 @@ Subject|설명|Url|
 |jpg_to_png|jpg에서 png로 변환|[jpg to png](2021/NIA/jpg_to_png/jpg_to_png.py)
 |crawling|크롤링|[crawling](2022/etc/crawling/crawling.py)
 |exif|exif정보보기|[exif](2022/NIA/DataLabeling/v1.4/check_exif.py)
+|select_river_valley|shapefile 핸들링|[shapefile](2022/Nakdong%20River%20water%20system%20management/Select_river_valley.py)|
