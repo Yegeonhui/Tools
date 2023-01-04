@@ -1,0 +1,76 @@
+{
+    "version": "5.0.1",
+    "flags": {},
+    "shapes": [
+        {
+            "Size": 0,
+            "Weight": 0,
+            "label": "Turbo_cornutus",
+            "points": [
+                [
+                    1532.0,
+                    595.5
+                ],
+                [
+                    1897.0,
+                    918.0
+                ]
+            ],
+            "group_id": null,
+            "shape_type": "rectangle",
+            "flags": {}
+        },
+        {
+            "label": "Turbo_cornutus",
+            "points": [
+                [
+                    2609.5,
+                    235.5
+                ],
+                [
+                    2857.0,
+                    445.5
+                ]
+            ],
+            "group_id": null,
+            "shape_type": "rectangle",
+            "flags": {},
+            "Size": 0,
+            "Weight": 0
+        },
+        {
+            "label": "Turbo_cornutus",
+            "points": [
+                [
+                    2867.0,
+                    1470.5
+                ],
+                [
+                    3062.0,
+                    1670.5
+                ]
+            ],
+            "group_id": null,
+            "shape_type": "rectangle",
+            "flags": {},
+            "Size": 0,
+            "Weight": 0
+        }
+    ],
+    "imagePath": "01012.jpg",
+    "imageData": null,
+    "imageHeight": 2160,
+    "imageWidth": 3840,
+    "Temperature": 20.5,
+    "Salinity": 33.08,
+    "DO": 7.19,
+    "pH": 8.39,
+    "Longitude": 35.06,
+    "Latitude": 129.05,
+    "Depth": 7.8,
+    "Location": "Yeongdo-gu_Jungni",
+    "Weather": 2,
+    "Transparency": 4,
+    "Date_created": "2022-06-21",
+    "ID": "CW201"
+}
