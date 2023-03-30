@@ -2,8 +2,8 @@
 2023-03-28
 YOLOV8-segmentation 학습용 데이터셋 만드는 코드 
 1. tile 영상(대부분 5000*5000*3) 
-2. resize 후 데이터셋 생성 (2560, 2560, 3)
-3. 이미지 4분할 -> (4, 1280, 1280, 3)
+2. resize 후 4차원 데이터셋 생성 (batch, 2560, 2560, 3)
+3. 4차원데이터셋 4분할 -> (batch *4, 1280, 1280, 3)
 3. mask에 contour 추출 후 coco dataset 형식으로 저장
 """
 
@@ -50,9 +50,9 @@ Return :
 """
 def makemask(objects):
     h, w, c = tif.shape
-    mask0 = np.zeros((h, w), np.uint8)
-    mask1 = np.zeros((h, w), np.uint8)
-    mask2 = np.array(np.ones((h, w)) * 255., np.uint8)
+    mask0 = np.zeros((h, w))
+    mask1 = np.zeros((h, w))
+    mask2 = np.ones((h, w)) * 255.
     for s in objects['shapes']:
         label = s['label']
         points = s['points']
@@ -90,17 +90,16 @@ def mask_to_YOLO(mask, i):
         # 야적퇴비 0, 야적퇴비_C 1
         
         cmask = np.array(mask[:, :, c], np.uint8)
-        contour, hierarchy = cv2.findContours(cmask, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+        #ret, binary = cv2.threshold(cmask, 127, 255, cv2.THRESH_BINARY)
+        contour, hierarchy = cv2.findContours(cmask, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
         for con in contour:
             coor = np.array(con, np.int32)
             coor = coor.reshape(coor.shape[0] * coor.shape[1] * coor.shape[2])
 
             # 상대좌표로 변경
             coor = coor / size
-            coor1 = np.insert(coor, 0, int(c))
-            for idx, co in enumerate(coor1):
-                if idx == 0:
-                    co = int(co)
+            f.write('{} '.format(c))
+            for idx, co in enumerate(coor):
                 f.write('{} '.format(co))
             f.write('\n')
     f.close()
@@ -134,54 +133,58 @@ print('tif파일 : ', tifcount)
 # 클래스 txt 생성
 os.makedirs(save_path, exist_ok=True)
 make_classestxt()
+try:
+    cnt = 0
+    for idx, (root, dirs, files) in enumerate(os.walk('Image')):
+        image_arr = [img for img in files if img.lower().endswith('tif')]
+        for tif in image_arr:
+            name = os.path.splitext(tif)[0]
+            print(name)
+                    
+            tiffile = os.path.join(root, name + '.tif')
+            jsonfile = os.path.join(root, name + '.json')
 
-cnt = 0
-for idx, (root, dirs, files) in enumerate(os.walk('Image')):
-    image_arr = [img for img in files if img.lower().endswith('tif')]
-    for tif in image_arr:
-        print(cnt)
-        name = os.path.splitext(tif)[0]
-                
-        tiffile = os.path.join(root, name + '.tif')
-        jsonfile = os.path.join(root, name + '.json')
+            ff = np.fromfile(tiffile, np.uint8)
+            tif = cv2.imdecode(ff, cv2.IMREAD_UNCHANGED)[:, :, :3]
+            
+            objects = getjson(jsonfile)
+            mask = makemask(objects)
+            
+            # 크기가 5000이 아니면 제로패딩 5000*5000으로 설정
+            h, w, c = tif.shape 
+            if h != 5000 or w != 5000:
+                tif = cv2.copyMakeBorder(tif, 0, 5000-h, 0, 5000-w, cv2.BORDER_CONSTANT, value=[0, 0, 0])
+                mask = cv2.copyMakeBorder(tif, 0, 5000-h, 0, 5000-w, cv2.BORDER_CONSTANT, value=[0, 0, 255])
 
-        ff = np.fromfile(tiffile, np.uint8)
-        tif = cv2.imdecode(ff, cv2.IMREAD_UNCHANGED)[:, :, :3]
+            tif = cv2.resize(tif, (size*2, size*2))
+            mask = cv2.resize(mask, (size*2, size*2))
+            new_tif = splitimage(tif)
+            new_mask = splitimage(mask)
+
+            for i in range(4):
+                # 검은 배경은 continue
+                if np.sum(new_tif[i, :, :, :]) == 0.0:
+                    continue
+            
+                # save 
+                cv2.imwrite(save_path + '/' + str(i + cnt) + '.jpg', new_tif[i, :, :, :])
+                mask_to_YOLO(new_mask[i, :, :, :], i + cnt)
+            
+            new_mask
+            cnt += 1
+except:
+    print('error')
+
         
-        objects = getjson(jsonfile)
-        mask = makemask(objects)
-        
-        # 크기가 5000이 아니면 제로패딩 5000*5000으로 설정
-        h, w, c = tif.shape 
-        if h != 5000 or w != 5000:
-            tif = cv2.copyMakeBorder(tif, 0, 5000-h, 0, 5000-w, cv2.BORDER_CONSTANT, value=[0, 0, 0])
-            mask = cv2.copyMakeBorder(tif, 0, 5000-h, 0, 5000-w, cv2.BORDER_CONSTANT, value=[0, 0, 255])
-
-        tif = cv2.resize(tif, (size*2, size*2))
-        mask = cv2.resize(mask, (size*2, size*2))
-        new_tif = splitimage(tif)
-        new_mask = splitimage(mask)
-
-        for i in range(4):
-            # 검은 배경은 continue
-            if np.sum(new_tif[i, :, :, :]) == 0.0:
-                continue
-        
-            # save 
-            cv2.imwrite(save_path + '/' + str(i + cnt) + '.jpg', new_tif[i, :, :, :])
-            mask_to_YOLO(new_mask[i, :, :, :], i + cnt)
-        
-        new_mask
-        cnt += 1
 
 
 
-    
         
             
-        
+                
+            
 
 
 
 
-        
+            
